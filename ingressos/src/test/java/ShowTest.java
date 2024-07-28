@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class ShowTest {
 
-    Show show;
+    private static Show show;
 
     @Test
     public void testAddition() {
@@ -16,18 +16,48 @@ public class ShowTest {
         assertEquals(5, result);
     }
 
-    @Test
-    public void inicializaShow() {
+    @BeforeAll
+    public static void inicializaShow() {
         String data = "06/05/2025";
         String artista = "Céline Dion";
         float cache = 300000;
         float totalDespesasInfraestrutura = 600000;
         boolean diaEspecial = false;
 
-        this.show = new Show(data, artista, cache, totalDespesasInfraestrutura, diaEspecial);
+        show = new Show(data, artista, cache, totalDespesasInfraestrutura, diaEspecial);
 
     }
 
-    
+    @Test
+    public void testGetDataShow() {
+        assertEquals("06/05/2025", show.getData());
+
+    }
+
+    @Test
+    public void testGetArtista() {
+        assertEquals("Céline Dion", show.getArtista());
+
+    }
+
+    @Test
+    public void testCache() {
+        assertEquals(300000, show.getCache());
+
+    }
+
+    @Test
+    public void testGetDespesas() {
+        assertEquals(600000, show.getTotalDespesasInfraEstrutura());
+
+    }
+
+    @Test
+    public void testGetDiaEspecial() {
+        assertFalse(show.isDiaEspecial());
+
+    }
+
+
 
 }
