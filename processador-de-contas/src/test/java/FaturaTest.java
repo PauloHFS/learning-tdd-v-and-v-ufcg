@@ -1,10 +1,12 @@
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ufcg.Conta;
 import com.ufcg.Fatura;
 
 public class FaturaTest {
@@ -13,12 +15,19 @@ public class FaturaTest {
 
   @Before
   public void beforeEach() {
-    this.fatura = new Fatura();
+    var clientName = "João Silva";
+    var dataVencimento = LocalDate.of(2024, 06, 24);
+    var contas = List.of(new Conta(500), new Conta(1000));
+
+    this.fatura = new Fatura(
+        clientName,
+        dataVencimento,
+        contas);
   }
 
   @Test
   public void should_return_the_fatura_value() {
-    assertEquals(1500, fatura.getValor());
+    assertEquals(Integer.valueOf(1500), fatura.getValor());
   }
 
   @Test
@@ -40,6 +49,7 @@ public class FaturaTest {
 
   @Test
   public void should_be_a_fatura_PENDENTE() {
+
     assertEquals(true, fatura.isPendente());
     assertEquals(false, fatura.isPaga());
   }

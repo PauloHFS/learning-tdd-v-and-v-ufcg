@@ -1,30 +1,47 @@
 package com.ufcg;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class Fatura {
 
-  public Object getValor() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getValor'");
+  private String name;
+  private LocalDate date;
+  private List<Conta> contas;
+  private FaturaStatus status;
+
+  public Fatura() {
+    super();
   }
 
-  public Object getNomeCliente() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNomeCliente'");
+  public Fatura(String name, LocalDate date, List<Conta> contas) {
+    super();
+    this.name = name;
+    this.date = date;
+    this.contas = contas;
+
+    // TODO: Implementar a lógica para definir o status da fatura
+    this.status = FaturaStatus.PAGA;
   }
 
-  public Object getData() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getData'");
+  public Integer getValor() {
+    return this.contas.stream().mapToInt(Conta::getValor).sum();
   }
 
-  public Object isPaga() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'isPaga'");
+  public String getNomeCliente() {
+    return this.name;
+  }
+
+  public LocalDate getData() {
+    return this.date;
+  }
+
+  public Boolean isPaga() {
+    return this.status == FaturaStatus.PAGA;
   }
 
   public Object isPendente() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'isPendente'");
+    return this.status == FaturaStatus.PENDENTE;
   }
 
 }
