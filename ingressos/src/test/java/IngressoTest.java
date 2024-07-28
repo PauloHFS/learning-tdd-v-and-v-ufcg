@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,11 @@ public class IngressoTest {
     @Test
     public void testGetTipo() {
         assertEquals(TipoIngresso.NORMAL, ingresso.getTipo());
+    }
+
+    @Test
+    public void testIsVendido() {
+        assertFalse(ingresso.isVendido());
     }
 
 }
