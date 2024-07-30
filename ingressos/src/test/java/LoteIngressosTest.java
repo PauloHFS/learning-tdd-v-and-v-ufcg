@@ -23,6 +23,30 @@ public class LoteIngressosTest {
     }
 
     @Test
+    public void testLoteQuantidadeVIPMenorQueNecessario() {
+        int id = 321;
+        int quantidadeIngressos = 500;
+        double porcentagem_vip = 0.1;
+        double desconto = 0.15;
+        double precoNormal = 10;
+
+        assertThrows(RuntimeException.class, () -> { new LoteIngressos(id, quantidadeIngressos, porcentagem_vip, desconto, precoNormal); });
+        
+    }
+
+    @Test
+    public void testLoteQuantidadeVIPMaiorQuePermitido() {
+        int id = 321;
+        int quantidadeIngressos = 500;
+        double porcentagem_vip = 0.5;
+        double desconto = 0.15;
+        double precoNormal = 10;
+
+        assertThrows(RuntimeException.class, () -> { new LoteIngressos(id, quantidadeIngressos, porcentagem_vip, desconto, precoNormal); });
+        
+    }
+
+    @Test
     public void getPrecoIngressoNormal() {
         assertEquals(8.5, lote.getPrecoIngresso(TipoIngresso.NORMAL));
     }
