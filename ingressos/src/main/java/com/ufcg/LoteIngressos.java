@@ -12,6 +12,8 @@ public class LoteIngressos {
     private double precoNormal;
 
     public LoteIngressos(int id, int quantidade_ingressos, double porcentagem_vip, double desconto, double precoNormal) {
+        if (porcentagem_vip > 0.3 || porcentagem_vip < 0.2) throw new RuntimeException("Quantidade de VIPs deve ser entre 10% e 20%");
+        
         this.id = id;
         this.desconto = desconto;
         this.precoNormal = precoNormal;
@@ -47,7 +49,10 @@ public class LoteIngressos {
     public double getPrecoIngresso(TipoIngresso tipoIngresso) {
         if (tipoIngresso == TipoIngresso.NORMAL)
             return precoNormal * (1 - desconto);
-        return 0;
+        else if (tipoIngresso == TipoIngresso.VIP)
+            return precoNormal * 2 * (1 - desconto);
+        else
+            return precoNormal / 2;
     }
 
 }

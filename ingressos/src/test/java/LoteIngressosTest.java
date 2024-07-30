@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,16 @@ public class LoteIngressosTest {
     @Test
     public void getPrecoIngressoNormal() {
         assertEquals(8.5, lote.getPrecoIngresso(TipoIngresso.NORMAL));
+    }
+
+    @Test
+    public void getPrecoIngressoVIP() {
+        assertEquals(17, lote.getPrecoIngresso(TipoIngresso.VIP));
+    }
+
+    @Test
+    public void getPrecoIngressoMeia() {
+        assertEquals(5, lote.getPrecoIngresso(TipoIngresso.MEIA_ENTRADA));
     }
 
     
