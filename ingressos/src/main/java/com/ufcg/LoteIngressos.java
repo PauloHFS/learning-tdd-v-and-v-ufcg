@@ -13,6 +13,7 @@ public class LoteIngressos {
 
     public LoteIngressos(int id, int quantidade_ingressos, double porcentagem_vip, double desconto, double precoNormal) {
         if (porcentagem_vip > 0.3 || porcentagem_vip < 0.2) throw new RuntimeException("Quantidade de VIPs deve ser entre 10% e 20%");
+        if (desconto > 0.25) throw new RuntimeException("Desconto não deve exceder 25%");
         
         this.id = id;
         this.desconto = desconto;

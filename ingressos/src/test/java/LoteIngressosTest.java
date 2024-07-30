@@ -47,6 +47,18 @@ public class LoteIngressosTest {
     }
 
     @Test
+    public void testDescontoMaiorQuePermitido() {
+        int id = 321;
+        int quantidadeIngressos = 500;
+        double porcentagem_vip = 0.25;
+        double desconto = 0.5;
+        double precoNormal = 10;
+
+        assertThrows(RuntimeException.class, () -> { new LoteIngressos(id, quantidadeIngressos, porcentagem_vip, desconto, precoNormal); });
+        
+    }
+
+    @Test
     public void getPrecoIngressoNormal() {
         assertEquals(8.5, lote.getPrecoIngresso(TipoIngresso.NORMAL));
     }
