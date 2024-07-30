@@ -21,4 +21,8 @@ public class Ingresso {
         return this.vendido;
     }
 
+    public void setVendido() {
+        this.vendido = true;
+    }
+
 }
