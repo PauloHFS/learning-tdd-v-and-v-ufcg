@@ -1,8 +1,13 @@
 import org.junit.jupiter.api.Test;
 
+import com.ufcg.LoteIngressos;
 import com.ufcg.Show;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 
@@ -56,6 +61,15 @@ public class ShowTest {
     public void testGetDiaEspecial() {
         assertFalse(show.isDiaEspecial());
 
+    }
+
+    @Test
+    public void testAssociaShowALote() {
+        LoteIngressos lote = new LoteIngressos(321, 200, 0.23, 0.0, 20);
+        show.addLote(lote);
+        
+        List<LoteIngressos> collection_lotes = new ArrayList<>(Arrays.asList(lote));
+        assertEquals(collection_lotes, show.getLotesIngressos());
     }
 
 

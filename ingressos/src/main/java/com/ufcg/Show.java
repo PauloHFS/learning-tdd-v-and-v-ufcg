@@ -1,5 +1,8 @@
 package com.ufcg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Show {
 
     private String data;
@@ -7,6 +10,7 @@ public class Show {
     private float cache;
     private float totalDespesasInfraEstrutura;
     private boolean diaEspecial;
+    private List<LoteIngressos> loteIngressos;
 
 
     public Show(String data, String artista, float cache, float totalDespesasInfraestrutura, boolean diaEspecial) {
@@ -15,6 +19,7 @@ public class Show {
         this.cache = cache;
         this.totalDespesasInfraEstrutura = totalDespesasInfraestrutura;
         this.diaEspecial = diaEspecial;
+        this.loteIngressos = new ArrayList<>();
 
     }
 
@@ -65,6 +70,16 @@ public class Show {
 
     public void setDiaEspecial(boolean diaEspecial) {
         this.diaEspecial = diaEspecial;
+    }
+
+
+    public void addLote(LoteIngressos lote) {
+        loteIngressos.add(lote);
+    }
+
+
+    public List<LoteIngressos> getLotesIngressos() {
+        return loteIngressos;
     }
 
 
