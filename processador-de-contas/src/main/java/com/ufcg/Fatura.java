@@ -1,31 +1,21 @@
 package com.ufcg;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import com.ufcg.pagamento.Pagamento;
 
 public class Fatura {
 
   private String name;
   private LocalDate date;
-  private List<Conta> contas;
-  private FaturaStatus status;
+  private Map<Conta, Optional<Pagamento>> contaPagamentoMap;
 
-  public Fatura() {
-    super();
-  }
-
-  public Fatura(String name, LocalDate date, List<Conta> contas) {
-    super();
+  public Fatura(String name, LocalDate date, Map<Conta, Optional<Pagamento>> contaPagamentoMap) {
     this.name = name;
     this.date = date;
-    this.contas = contas;
-
-    // TODO: Implementar a lógica para definir o status da fatura
-    this.status = FaturaStatus.PAGA;
-  }
-
-  public Integer getValor() {
-    return this.contas.stream().mapToInt(Conta::getValor).sum();
+    this.contaPagamentoMap = contaPagamentoMap;
   }
 
   public String getNomeCliente() {
@@ -36,12 +26,12 @@ public class Fatura {
     return this.date;
   }
 
-  public Boolean isPaga() {
-    return this.status == FaturaStatus.PAGA;
-  }
+  public boolean isPaga() {
+    if (!this.contaPagamentoMap.values().stream().allMatch(Optional::isPresent)) {
+      return false;
+    }
 
-  public Object isPendente() {
-    return this.status == FaturaStatus.PENDENTE;
+    return this.contaPagamentoMap.values().stream().map(Optional::get).filter(Pagamento::isPaga)
+        .count() == this.contaPagamentoMap.size();
   }
-
 }
