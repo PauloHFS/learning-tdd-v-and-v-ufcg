@@ -92,8 +92,7 @@ public class Show {
         String status;
 
         double receita = 0;
-        double custos = totalDespesasInfraEstrutura + cache;
-        custos = (diaEspecial) ? custos * 1.15 : custos;
+        double custos = (diaEspecial) ? (totalDespesasInfraEstrutura * 1.15) + cache: totalDespesasInfraEstrutura + cache;
         double precoVip;
         double precoNormal;
         double precoMeia;
@@ -112,8 +111,6 @@ public class Show {
         }
 
         receitaLiquida = receita - custos;
-        System.out.println("ATENZIONEEEEEEEEEEEEE");
-        System.out.println(custos);
         status = (receitaLiquida > 0) ? "LUCRO" : (receitaLiquida == 0) ? "ESTÁVEL" : "PREJUÍZO";
         String retorno = MessageFormat.format("Número de Ingressos VIP Vendidos: {0} | Número de Ingressos NORMAL Vendidos: {1} | Número de Ingressos MEIA_ENTRADA Vendidos: {2} | Receita: {3} | Status: {4}", 
                                                 vendidosVip, vendidosNormal, vendidosMeia, receitaLiquida, status);

@@ -14,14 +14,14 @@ public class IngressoTest {
 
     @BeforeAll
     public static void inicializaIngresso() {
-        int id = 1;
+        int id = 1239;
 
         ingresso = new Ingresso(id, TipoIngresso.NORMAL);
     }
 
     @Test
     public void testGetID() {
-        assertEquals(1, ingresso.getID());
+        assertEquals(1239, ingresso.getID());
     }
 
     @Test
@@ -31,7 +31,8 @@ public class IngressoTest {
 
     @Test
     public void testIsVendido() {
-        assertFalse(ingresso.isVendido());
+        Ingresso ingresso2 = new Ingresso(1212, TipoIngresso.NORMAL);
+        assertFalse(ingresso2.isVendido());
     }
 
     @Test
