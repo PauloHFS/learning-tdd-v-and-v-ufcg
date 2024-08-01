@@ -3,6 +3,7 @@ package com.ufcg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LoteIngressos {
 
@@ -54,6 +55,36 @@ public class LoteIngressos {
             return precoNormal * 2 * (1 - desconto);
         else
             return precoNormal / 2;
+    }
+
+    public int getQuantidadeVendidos(TipoIngresso tipo) {
+        int total = 0;
+        for (Ingresso ingresso : ingressos) {
+            if (ingresso.getTipo() == tipo && ingresso.isVendido()) total += 1;
+        }
+
+        return total;
+    }
+
+    public List<Ingresso> getIngressos(TipoIngresso tipo) {
+        List<Ingresso> ingressosFiltrados = ingressos.stream()
+                                          .filter(ing -> ing.getTipo() == tipo)
+                                          .collect(Collectors.toList());
+        
+        return ingressosFiltrados;
+    }
+
+    public void vender(int id_ingresso) {
+        for (Ingresso ingresso : ingressos) {
+            if (ingresso.getID() == id_ingresso) {
+                ingresso.setVendido();
+                break;
+            }
+        }
+    }
+
+    public int getID() {
+        return id;
     }
 
 }

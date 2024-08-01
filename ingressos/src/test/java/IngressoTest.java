@@ -20,6 +20,11 @@ public class IngressoTest {
     }
 
     @Test
+    public void testGetID() {
+        assertEquals(1, ingresso.getID());
+    }
+
+    @Test
     public void testGetTipo() {
         assertEquals(TipoIngresso.NORMAL, ingresso.getTipo());
     }
