@@ -55,7 +55,7 @@ public class Show {
 
 
     public double getTotalDespesasInfraEstrutura() {
-        return totalDespesasInfraEstrutura;
+        return (diaEspecial) ? totalDespesasInfraEstrutura * 1.15 : totalDespesasInfraEstrutura;
     }
 
 
@@ -116,6 +116,37 @@ public class Show {
                                                 vendidosVip, vendidosNormal, vendidosMeia, receitaLiquida, status);
         
         return retorno;
+    }
+
+
+    public String getStatus() {
+        int vendidosVip = 0;
+        int vendidosMeia = 0;
+        int vendidosNormal = 0;
+        double receitaLiquida;
+        double receita = 0;
+        double custos = this.getTotalDespesasInfraEstrutura() + cache;
+
+        double precoVip;
+        double precoNormal;
+        double precoMeia;
+        for (LoteIngressos lote : loteIngressos) {
+            vendidosVip += lote.getQuantidadeVendidos(TipoIngresso.VIP);
+            precoVip = lote.getPrecoIngresso(TipoIngresso.VIP);
+            receita += vendidosVip * precoVip;
+
+            vendidosMeia += lote.getQuantidadeVendidos(TipoIngresso.MEIA_ENTRADA);
+            precoMeia = lote.getPrecoIngresso(TipoIngresso.MEIA_ENTRADA);
+            receita += vendidosMeia * precoMeia;
+            
+            vendidosNormal += lote.getQuantidadeVendidos(TipoIngresso.NORMAL);
+            precoNormal = lote.getPrecoIngresso(TipoIngresso.NORMAL);
+            receita += vendidosNormal * precoNormal;
+        }
+
+        receitaLiquida = receita - custos;
+        return (receitaLiquida > 0) ? "LUCRO" : (receitaLiquida == 0) ? "ESTÁVEL" : "PREJUÍZO";
+
     }
 
 
